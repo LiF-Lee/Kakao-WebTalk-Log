@@ -13,11 +13,11 @@
 ### 요청 본문
 - **room** (`string`): 방 이름
 - **data** (`array`):
-    - **type** (`string`): 메시지 유형 (UI, MESSAGE_MINE, MESSAGE)
+    - **type** (`string`): 메시지 유형 (`UI`, `MESSAGE_MINE`, `MESSAGE`)
     - **message** (`string`): 메시지 내용
-    - **time** (`string`, 선택 사항): 시간, type이 MESSAGE 또는 MESSAGE_MINE일 때 사용됩니다.
-    - **name** (`string`, 선택 사항): 이름, type이 MESSAGE일 때 사용됩니다.
-    - **profile** (`string`, 선택 사항): 프로필 이미지, type이 MESSAGE일 때 사용됩니다.
+    - **time** (`string`, 선택 사항): 시간, `type`이 `MESSAGE` 또는 `MESSAGE_MINE`일 때 사용됩니다.
+    - **name** (`string`, 선택 사항): 이름, `type`이 `MESSAGE`일 때 사용됩니다.
+    - **profile** (`string`, 선택 사항): 프로필 이미지, `type`이 `MESSAGE`일 때 사용됩니다.
 
 ### 예제 요청 본문
 ```json
