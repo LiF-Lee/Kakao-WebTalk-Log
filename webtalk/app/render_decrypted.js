@@ -106,5 +106,3 @@ function renderChat(chatData) {
         }
     }            
 }
-
-renderChat();
