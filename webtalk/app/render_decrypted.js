@@ -92,54 +92,11 @@ function fromBinary(encoded) {
     return String.fromCharCode(...new Uint16Array(bytes.buffer));
 }
 
-function urlParam(name) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    if (!urlParams.has(name)) { return false; } 
-    return urlParams.get(name);
-}
-
-function renderChat() {
+function renderChat(chatData) {
     const titleContainer = document.querySelector('.tit_webchat');
     const chatContainer = document.querySelector('.inner_webchat');
 
-    const chatData = urlParam("data");
-    const decodeChatData = {
-        "room": "Github@LiF-Lee",
-        "data": [
-            {
-                "type": "UI",
-                "message": "2023년 12월 14일 목요일"
-            },
-            {
-                "type": "UI",
-                "message": "생각하는 라이언님이 들어왔습니다."
-            },
-            {
-                "type": "MESSAGE_MINE",
-                "time": "오후 4:25",
-                "message": "이것은 로그"
-            },
-            {
-                "type": "MESSAGE_MINE",
-                "time": "오후 4:25",
-                "message": "이것은 로그 22"
-            },
-            {
-                "type": "UI",
-                "message": "생각하는 라이언님이 나갔습니다."
-            },
-            {
-                "type": "MESSAGE",
-                "time": "오후 4:25",
-                "name": "카카오톡 로그",
-                "profile": "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-                "message": "아아 테스트 1\n아아 테스트 123\n아아 테스트 12345\n아아 테스트 1234567\n아아 테스트 123456789"
-            }
-        ]
-    };
-
-    if (chatData !== false) {
+    if (chatData !== '') {
         const decodeChatData = JSON.parse(fromBinary(chatData));
         titleContainer.innerHTML = decodeChatData.room ?? "";
         if (decodeChatData.data !== undefined) {
