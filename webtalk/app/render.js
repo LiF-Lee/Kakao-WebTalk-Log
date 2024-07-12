@@ -98,7 +98,7 @@ function renderChat(chatData) {
 
     if (chatData !== '') {
         const decodeChatData = JSON.parse(fromBinary(chatData));
-        titleContainer.innerHTML = decodeChatData.room ?? "";
+        titleContainer.innerText = decodeChatData.room ?? "";
         if (decodeChatData.data !== undefined) {
             decodeChatData.data.forEach(item => {
                 chatContainer.innerHTML += createChatHTML(item);
