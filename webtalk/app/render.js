@@ -1,8 +1,17 @@
+function escapeHTML(str) {
+    return str.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+}
+
 function createChatHTML(item) {
     let html = '';
+    const escapedMessage = escapeHTML(item.message);
     switch(item.type) {
         case 'UI':
-            html = `<div class="chat_ui"><div class="toast_comm"><span>${item.message}</span></div></div>`;
+            html = `<div class="chat_ui"><div class="toast_comm"><span>${escapedMessage}</span></div></div>`;
             break;
         case 'MESSAGE_MINE':
             html = `<div class="chat_comm chat_mine chat_start" tabindex="0"
@@ -16,7 +25,7 @@ function createChatHTML(item) {
                                 </span>
                                 <div class="bubble_body">
                                     <div class="contents_comm">
-                                        <p><span>${item.message}</span></p>
+                                        <p><span>${escapedMessage}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -24,7 +33,7 @@ function createChatHTML(item) {
                         <div class="util_bubble">
                             <div class="info_bubble">
                                 <div class="list_info"><span class="screen_out">보낸시간</span>
-                                    <span role="text">오후 <span class="num_comm">${item.time}</span></span>
+                                    <span role="text">오후 <span class="num_comm">${escapeHTML(item.time)}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -39,13 +48,13 @@ function createChatHTML(item) {
                                     <svg viewBox="0 0 36 36" aria-hidden="true" focusable="false">
                                         <g>
                                             <image clip-path="url(#clipThumb2)" height="100%" width="100%"
-                                                href="${item.profile}" preserveAspectRatio="xMidYMid slice"></image>
+                                                href="${escapeHTML(item.profile)}" preserveAspectRatio="xMidYMid slice"></image>
                                             <use href="#shapeSuircle2" class="thumb_bg"></use>
                                             <use href="#squircleBorder" class="thumb_stroke"></use>
                                         </g>
                                     </svg>
                                 </div>
-                                <div class="info_profile"><strong class="tit_profile">${item.name}</strong></div>
+                                <div class="info_profile"><strong class="tit_profile">${escapeHTML(item.name)}</strong></div>
                             </div>
                         </div>
                         <div class="chat_contents">
@@ -57,7 +66,7 @@ function createChatHTML(item) {
                                 </span>
                                 <div class="bubble_body">
                                     <div class="contents_comm">
-                                        ${item.message.split('\n').map(line => `<p><span>${line}</span></p>`).join('')}
+                                        ${escapedMessage.split('\n').map(line => `<p><span>${line}</span></p>`).join('')}
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +74,7 @@ function createChatHTML(item) {
                         <div class="util_bubble">
                             <div class="info_bubble">
                                 <div class="list_info"><span class="screen_out">보낸시간</span>
-                                    <span role="text">오후 <span class="num_comm">${item.time}</span></span>
+                                    <span role="text">오후 <span class="num_comm">${escapeHTML(item.time)}</span></span>
                                 </div>
                             </div>
                         </div>
